@@ -28,7 +28,6 @@ public class EmployeeController {
         return employeeService.get(id);
     }
 
-    @Transactional
     @PostMapping("/add")
     public void add(@RequestBody Employee employee) {
         employeeService.add(employee);

@@ -2,6 +2,7 @@ package ru.psu.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.psu.exception.ValidationException;
 import ru.psu.model.Page;
 import ru.psu.model.Pageable;
@@ -43,12 +44,14 @@ public class EmployeeService {
     }
 
     // Добавление сотрудника
+    @Transactional
     public void add(Employee employee) {
         employee.setId(employeeRepository.nextId());
         employeeDao.insert(employee);
     }
 
     // Изменение сотрудника
+    @Transactional
     public void update(Employee employee) {
 
         // Если организация сменилась - ставим подчиненным в качестве руководителя null
@@ -60,6 +63,7 @@ public class EmployeeService {
     }
 
     // Удаление сотрудника
+    @Transactional
     public void delete(Long id) {
         if (employeeRepository.existsChildren(id)) {
             throw new ValidationException("Сотрудник не может быть удалена!");

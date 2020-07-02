@@ -2,6 +2,7 @@ package ru.psu.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.psu.exception.ValidationException;
 import ru.psu.model.Page;
 import ru.psu.model.Pageable;
@@ -34,17 +35,20 @@ public class OrganizationService {
     }
 
     // Добавление организации
+    @Transactional
     public void add(Organization organization) {
         organization.setId(organizationRepository.nextId());
         organizationDao.insert(organization);
     }
 
     // Изменение организации
+    @Transactional
     public void update(Organization organization) {
         organizationDao.update(organization);
     }
 
     // Удаление организации
+    @Transactional
     public void delete(Long id) {
         if (organizationRepository.existsChildren(id)) {
             throw new ValidationException("Организация не может быть удалена!");
