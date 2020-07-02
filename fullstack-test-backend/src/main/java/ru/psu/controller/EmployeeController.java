@@ -1,7 +1,6 @@
 package ru.psu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ru.psu.model.Page;
 import ru.psu.model.Pageable;
@@ -33,13 +32,11 @@ public class EmployeeController {
         employeeService.add(employee);
     }
 
-    @Transactional
     @PutMapping("/update")
     public void update(@RequestBody Employee employee) {
         employeeService.update(employee);
     }
 
-    @Transactional
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id) {
         employeeService.delete(id);
