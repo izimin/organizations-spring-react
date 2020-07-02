@@ -1,0 +1,120 @@
+{
+  "name": "fullstack-test-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "css-loader": "^3.6.0",
+    "express": "^4.17.1",
+    "immutability-helper": "^3.0.1",
+    "jss-plugin-default-unit": "^10.0.0-alpha.7",
+    "jss-preset-default": "^10.0.0",
+    "node-sass": "^4.14.1",
+    "react": "^16.9.0",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.9.0",
+    "react-icons": "^3.10.0",
+    "react-jss": "^10.0.0-alpha.24",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-router-redux": "^4.0.8",
+    "react-select": "^3.1.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.5.5",
+    "ava": "^2.3.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-transform-define": "^1.3.1",
+    "babel-plugin-transform-require-ignore": "^0.1.1",
+    "babel-plugin-webpack-alias": "^2.1.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "express-http-proxy": "^1.6.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jss": "^10.1.1",
+    "minimist": "^1.2.0",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "react-shadow-dom-retarget-events": "^1.0.11",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.1"
+  },
+  "scripts": {
+    "devbuild": "webpack --inline --progress --config webpack/base.js --mode development --watch",
+    "devserver": "node devserver.js",
+    "local": "webpack-dev-server --watch --mode=development --inline --progress --hot --config webpack/local.js",
+    "developer": "run-p devserver devbuild",
+    "production": "webpack --config webpack/base.js",
+    "linter": "eslint src/ --ext .js --ext .jsx",
+    "test": "ava src/**/*.test.js",
+    "test-development": "ava src/**/*.test.js --watch"
+  },
+  "author": "zimin",
+  "license": "non-commercial software",
+  "ava": {
+    "extensions": [
+      "jsx"
+    ],
+    "require": [
+      "@babel/core",
+      "@babel/polyfill",
+      "@babel/register"
+    ],
+    "babel": {
+      "testOptions": {
+        "presets": [
+          "@babel/preset-react",
+          "@babel/preset-env"
+        ],
+        "plugins": [
+          "@babel/plugin-transform-runtime"
+        ]
+      }
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "decoratorsBeforeExport": true
+        }
+      ],
+      [
+        "babel-plugin-transform-require-ignore",
+        {
+          "extensions": [
+            ".css"
+          ]
+        }
+      ]
+    ]
+  },
+  "nyc": {
+    "extension": [
+      ".jsx"
+    ]
+  }
+}
