@@ -7,7 +7,9 @@ const Content = ({
     OrganizationsList,
     EmployeesList,
     OrganizationsUpsert,
-    EmployeeUpsert
+    EmployeeUpsert,
+    OrganizationTree,
+    EmployeeTree
 }) => () => (
     <Switch>
         <Route
@@ -19,7 +21,7 @@ const Content = ({
         <Route
             exact
             path={'/organization/tree'}
-            component={OrganizationsList}
+            component={OrganizationTree}
         />
 
         <Route
@@ -35,7 +37,7 @@ const Content = ({
 
         <Route
             path={'/employee/tree'}
-            component={EmployeesList}
+            component={EmployeeTree}
         />
 
         <Route

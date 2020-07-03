@@ -3,7 +3,7 @@ const html = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const base = require('./base');
 const {
-    port = 8080,
+    port = 80,
     backend = 'http://localhost:8081',
 } = require('minimist')(process.argv.slice(2));
 

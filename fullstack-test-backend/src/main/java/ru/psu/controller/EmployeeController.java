@@ -43,7 +43,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/list")
-    public Page<EmployeePojo> list(
+    public Page<EmployeePojo> listRoot(
             @RequestParam Integer pageNumber,
             @RequestParam Integer pageSize,
             @RequestParam String filter) {
@@ -63,12 +63,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/tree/roots")
-    public List<Employee> list() {
+    public List<Employee> listRoots() {
         return employeeService.roots();
     }
 
     @GetMapping("/{id}/tree/children")
-    public Page<Employee> list(
+    public Page<Employee> childrenPage(
             @PathVariable Long id,
             @RequestParam Integer pageNumber,
             @RequestParam Integer pageSize) {

@@ -2,10 +2,13 @@ import OrganizationApi from 'Api/organizationApi';
 import {SetOrganizations} from './setOrganizations';
 import {SetTotal} from '../setTotal';
 import {SetIsLoading} from '../setIsLoading';
+import {SetPage} from '../setPage';
+import {SetEditOrganization} from './setEditOrganization';
 
 export const FetchOrganizations = ({
     OrganizationApi,
     SetOrganizations,
+    SetEditOrganization,
     SetTotal,
     SetIsLoading
 }) => () => {
@@ -20,7 +23,7 @@ export const FetchOrganizations = ({
             } = getState();
 
             const params = {
-                pageNumber: page - 1,
+                pageNumber: filter !== '' ? 0 : page - 1,
                 pageSize: pageSize,
                 filter: filter
             };
@@ -31,7 +34,9 @@ export const FetchOrganizations = ({
             }} = await OrganizationApi.List(params);
 
             dispatch(SetOrganizations(content));
+            dispatch(SetEditOrganization({id: null, name: '', parentId: null}));
             dispatch(SetTotal(total));
+            dispatch(SetPage(params.pageNumber + 1));
         } catch {
             //
         } finally {
@@ -43,6 +48,8 @@ export const FetchOrganizations = ({
 export default FetchOrganizations({
     OrganizationApi,
     SetOrganizations,
+    SetEditOrganization,
     SetTotal,
+    SetPage,
     SetIsLoading
 });

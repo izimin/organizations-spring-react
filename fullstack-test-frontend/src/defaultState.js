@@ -7,11 +7,13 @@ export default {
     directors: [],
     total: 0,
     page: 1,
-    pageSize: 5,
+    pageSize: 10,
     isLoading: false,
     title: 'Список организаций',
     isShowAddButton: true,
     type: 'organization',
     organizationsForEmployee: [],
-    filter: ''
+    filter: '',
+    treeItems: {},
+    rootEmployees: []
 };

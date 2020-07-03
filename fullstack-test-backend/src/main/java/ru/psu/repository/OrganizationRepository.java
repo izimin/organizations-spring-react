@@ -86,4 +86,10 @@ public class OrganizationRepository {
     public Integer countChildren(Long id) {
         return dslContext.fetchCount(ORGANIZATION, ORGANIZATION.PARENT_ID.eq(id));
     }
+
+    public List<ru.psu.test.tables.pojos.Organization> roots() {
+        return dslContext.selectFrom(ORGANIZATION)
+                .where(ORGANIZATION.PARENT_ID.isNull())
+                .fetchInto(ru.psu.test.tables.pojos.Organization.class);
+    }
 }

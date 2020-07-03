@@ -83,7 +83,7 @@ public class EmployeeService {
 
     // Получение списка корневых сотрудников
     public List<Employee> roots() {
-        return employeeDao.fetchByDirectorId((Long) 1L);
+        return employeeRepository.roots();
     }
 
     // Получение подчиненных сотрудников постранично

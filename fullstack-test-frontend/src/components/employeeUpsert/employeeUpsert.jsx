@@ -33,10 +33,10 @@ export const EmployeeUpsert = () => ({
 
 
     const employee = {
-        id: isEdit ? editEmployee.id : null,
-        name: isEdit ? editEmployee.name : '',
-        organizationId: isEdit ? editEmployee.organizationId : null,
-        directorId: isEdit ? editEmployee.directorId : null
+        id: editEmployee.id,
+        name: editEmployee.name,
+        organizationId: editEmployee.organizationId,
+        directorId: editEmployee.directorId
     };
 
     const handleChangeInput = event => {
@@ -45,6 +45,7 @@ export const EmployeeUpsert = () => ({
 
     const handleChangeSelectOrganization = event => {
         employee.organizationId = event.target.value;
+        fetchDirectors(employee);
     };
 
     const handleChangeSelectDirector = event => {
@@ -67,7 +68,6 @@ export const EmployeeUpsert = () => ({
                     name={'organizations'}
                     className={classes.inputSelect}
                     onChange={handleChangeSelectOrganization}
-                    onInput={() => fetchDirectors(employee)}
                     value={employee.organizationId || 0}
                 >
                     <option value={null}>Нет</option>

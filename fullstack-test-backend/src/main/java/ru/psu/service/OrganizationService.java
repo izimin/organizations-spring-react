@@ -73,7 +73,7 @@ public class OrganizationService {
 
     // Получение списка корневых организаций
     public List<Organization> roots() {
-        return organizationDao.fetchByParentId((Long) 1L);
+        return organizationRepository.roots();
     }
 
     // Получение дочерних организаций постранично

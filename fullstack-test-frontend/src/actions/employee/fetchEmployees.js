@@ -2,12 +2,16 @@ import EmployeeApi from 'Api/employeeApi';
 import {SetEmployees} from './setEmployees';
 import {SetTotal} from '../setTotal';
 import {SetIsLoading} from '../setIsLoading';
+import {SetPage} from '../setPage';
+import {SetEditEmployee} from './setEditEmployee';
 
 export const FetchEmployees = ({
     EmployeeApi,
     SetEmployees,
+    SetEditEmployee,
     SetTotal,
-    SetIsLoading
+    SetIsLoading,
+    SetPage
 }) => () => {
     return async (dispatch, getState) => {
         try {
@@ -20,7 +24,7 @@ export const FetchEmployees = ({
             } = getState();
 
             const params = {
-                pageNumber: page - 1,
+                pageNumber: filter !== '' ? 0 : page - 1,
                 pageSize: pageSize,
                 filter: filter
             };
@@ -31,7 +35,9 @@ export const FetchEmployees = ({
             }} = await EmployeeApi.List(params);
 
             dispatch(SetEmployees(content));
+            dispatch(SetEditEmployee({id: null, name: '', organizationId: null, directorId: null}));
             dispatch(SetTotal(total));
+            dispatch(SetPage(params.pageNumber + 1));
         } catch {
             //
         } finally {
@@ -43,6 +49,8 @@ export const FetchEmployees = ({
 export default FetchEmployees({
     EmployeeApi,
     SetEmployees,
+    SetEditEmployee,
     SetTotal,
+    SetPage,
     SetIsLoading
 });

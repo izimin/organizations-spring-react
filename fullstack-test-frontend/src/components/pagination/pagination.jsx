@@ -10,8 +10,8 @@ export const Pagination = () => ({
     onChange,
     fetch
 }) => {
-    const begin = (page-1)*pageSize + 1;
-    const end = begin+pageSize-1;
+    const begin = (page - 1) * pageSize + 1;
+    const end = begin + pageSize - 1;
 
     useEffect(() => {
         if (total === 0) {

@@ -60,12 +60,12 @@ public class OrganizationController {
     }
 
     @GetMapping("/tree/roots")
-    public List<Organization> list() {
+    public List<Organization> listRoots() {
         return organizationsService.roots();
     }
 
     @GetMapping("/{id}/tree/children")
-    public Page<Organization> list(
+    public Page<Organization> childrenPage(
             @PathVariable Long id,
             @RequestParam Integer pageNumber,
             @RequestParam Integer pageSize) {

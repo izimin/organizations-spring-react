@@ -67,7 +67,7 @@
     "test-development": "ava src/**/*.test.js --watch"
   },
   "author": "zimin",
-  "license": "non-commercial software",
+  "license": "UNLICENSED",
   "ava": {
     "extensions": [
       "jsx"

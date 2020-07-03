@@ -50,7 +50,7 @@ const Header = ({
                         <NavLink
                             className={classes.button}
                             title="Добавить"
-                            to={`/${type}/add`}>
+                            to={`/${document.location.pathname.indexOf('organization') !== -1 ? 'organization' : 'employee'}/add`}>
                             <FiPlusCircle size={40} color="#A5AEB3"/>
                         </NavLink>
                     </div>

@@ -5,6 +5,8 @@ import OrganizationsList from '../organizationsList';
 import EmployeesList from '../employeesList';
 import OrganizationsUpsert from '../organizationUpsert';
 import EmployeeUpsert from '../employeeUpsert';
+import OrganizationTree from '../organizationTree';
+import EmployeeTree from '../employeeTree';
 
 const Content = (withRouter(content({
     Switch,
@@ -13,7 +15,9 @@ const Content = (withRouter(content({
     OrganizationsList,
     EmployeesList,
     OrganizationsUpsert,
-    EmployeeUpsert
+    EmployeeUpsert,
+    OrganizationTree,
+    EmployeeTree
 })));
 
 export default Content;

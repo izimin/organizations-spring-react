@@ -52,7 +52,7 @@ public class EmployeeRepository {
     }
 
     public Integer countByFilter(String filter) {
-        return dslContext.fetchCount(EMPLOYEE.join(ORGANIZATION).on(EMPLOYEE.ORGANIZATION_ID.eq(ORGANIZATION.ID)),
+        return dslContext.fetchCount(EMPLOYEE.leftJoin(ORGANIZATION).on(EMPLOYEE.ORGANIZATION_ID.eq(ORGANIZATION.ID)),
                 ORGANIZATION.NAME.like(filter).or(EMPLOYEE.NAME.like(filter)));
     }
 
@@ -86,5 +86,11 @@ public class EmployeeRepository {
 
     public Integer countChildren(Long id) {
         return dslContext.fetchCount(EMPLOYEE, EMPLOYEE.DIRECTOR_ID.eq(id));
+    }
+
+    public List<ru.psu.test.tables.pojos.Employee> roots() {
+        return dslContext.selectFrom(EMPLOYEE)
+                .where(EMPLOYEE.DIRECTOR_ID.isNull())
+                .fetchInto(ru.psu.test.tables.pojos.Employee.class);
     }
 }

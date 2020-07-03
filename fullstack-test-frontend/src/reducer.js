@@ -12,6 +12,9 @@ import {SET_EDIT_ORGANIZATION, MutateEditOrganization} from './actions/organizat
 import {SET_ORGANIZATIONS_FOR_EMPLOYEE, MutateOrganizationsForEmployee} from './actions/employee/setOrganizationsForEmployee';
 import {SET_EDIT_EMPLOYEE, MutateEditEmployee} from './actions/employee/setEditEmployee';
 import {SET_DIRECTORS, MutateDirectors} from './actions/employee/setDirectors';
+import {SET_ROOT_ORGANIZATIONS, MutateRootOrganizations} from './actions/organization/setRootOrganizations';
+import {SET_TREE_ITEMS, MutateTreeItems} from './actions/setTreeItems';
+import {SET_ROOT_EMPLOYEES, MutateRootEmployees} from './actions/employee/setRootEmployees';
 
 export default function Reducer(state = DefaultState, {type, payload}) {
     switch (type) {
@@ -51,6 +54,15 @@ export default function Reducer(state = DefaultState, {type, payload}) {
 
         case SET_FILTER:
             return MutateFilter(state, payload);
+
+        case SET_ROOT_ORGANIZATIONS:
+            return MutateRootOrganizations(state, payload);
+
+        case SET_TREE_ITEMS:
+            return MutateTreeItems(state, payload);
+
+        case SET_ROOT_EMPLOYEES:
+            return MutateRootEmployees(state, payload);
 
         default:
             return state;
