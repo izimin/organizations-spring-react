@@ -57,6 +57,7 @@ public class OrganizationService {
     }
 
     // Список организаций
+    @Transactional
     public Page<OrganizationPojo> list(Pageable pageable) {
         return new Page<>(organizationRepository.list(pageable), countByFilter(pageable.getFilterLike()), pageable.getPageSize());
     }
@@ -77,6 +78,7 @@ public class OrganizationService {
     }
 
     // Получение дочерних организаций постранично
+    @Transactional
     public Page<Organization> childrenPage(Long id, Pageable pageable) {
         return new Page<>(organizationRepository.childrenPage(id, pageable), countChildren(id), pageable.getPageSize());
     }

@@ -35,6 +35,7 @@ public class EmployeeService {
     }
 
     // Список сотрудников
+    @Transactional
     public Page<EmployeePojo> list(Pageable pageable) {
         return new Page<>(employeeRepository.list(pageable), countByFilter(pageable.getFilterLike()), pageable.getPageSize());
     }
@@ -87,6 +88,7 @@ public class EmployeeService {
     }
 
     // Получение подчиненных сотрудников постранично
+    @Transactional
     public Page<Employee> childrenPage(Long id, Pageable pageable) {
         return new Page<>(employeeRepository.childrenPage(id, pageable), countChildren(id), pageable.getPageSize());
     }

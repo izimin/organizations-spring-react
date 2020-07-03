@@ -16,6 +16,7 @@ export const OrganizationsTree = () => ({
     useEffect(() => {
         setHeaderData({title: 'Дерево организаций', isShowAddButton: false, type: 'organization'});
         fetchRootOrganizations();
+        setTreeItems({});
     }, []);
 
     rootOrganizations.map(or => {

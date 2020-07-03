@@ -16,6 +16,7 @@ export const EmployeeTree = () => ({
     useEffect(() => {
         setHeaderData({title: 'Дерево сотрудников', isShowAddButton: false, type: 'organization'});
         fetchRootEmployees();
+        setTreeItems({});
     }, []);
 
     rootEmployees.map(or => {
